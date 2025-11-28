@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OsintCompanion.Views.MetadataPage"
+             Title="Metadata Lookup">
+
+
+    <Grid Padding="16" RowDefinitions="Auto,Auto,Auto,*,Auto" RowSpacing="10">
+
+        <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="8">
+            <!-- Input for URL or file path -->
+            <Entry x:Name="InputEntry"
+                Placeholder='Enter URL or file path (e.g "C:\Users\user\Pictures\Untitled59_20240201105840.png" )'
+                HorizontalOptions="FillAndExpand"
+                FontSize="14"
+                Keyboard="Url"
+                Completed="OnEntryCompleted"/>
+
+            <Button Text="Extract Metadata"
+                    Clicked="OnExtractClicked"
+                    BackgroundColor="#4A90E2"
+                    TextColor="White"
+                    WidthRequest="96"/>
+        </StackLayout>
+
+
+        <StackLayout Grid.Row="2" Orientation="Horizontal" Spacing="8">
+            <Border StrokeThickness="2"
+                    Stroke="#4a4a4a">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10,10,10,10"/>
+                    </Border.StrokeShape>
+            <!-- Log/Output area -->
+
+            <ScrollView HeightRequest="240"
+                        BackgroundColor="#111111"
+                        Padding="8">
+
+                <Label x:Name="OutputLabel"
+                    Text="Ready... (Output Will Shown Here)"
+                    TextColor="#cccccc"
+                    FontFamily="Consolas"
+                    LineBreakMode="WordWrap"/>
+            </ScrollView>
+            </Border>
+        </StackLayout>
+
+    </Grid>
+</ContentPage>

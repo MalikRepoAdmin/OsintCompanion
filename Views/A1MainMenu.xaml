@@ -1,0 +1,119 @@
+<ContentPage
+    x:Class="OsintCompanion.Views.A1MainMenu"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Main Page">
+
+    <ContentPage.Resources>
+        <Color x:Key="FolderColor">#3877A0</Color>
+        <Color x:Key="SettingsColor">#A03877</Color>
+        <Color x:Key="HomeColor">#38A04D</Color>
+    </ContentPage.Resources>
+
+
+
+
+
+    <Grid>
+
+        <VerticalStackLayout>
+            <Label Text="Welcome!" FontSize="22"  FontAttributes="Bold" HorizontalOptions="Center" />
+            <Button Text="Help" Clicked="OnHelpClicked" Margin="0,0,0,10" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+
+
+        <HorizontalStackLayout x:Name="DrawerAssembly"
+                               HorizontalOptions="Start"
+                               VerticalOptions="FillAndExpand"
+                               Spacing="0"> 
+
+            <Frame x:Name="DrawerFrame"
+                   WidthRequest="250" 
+                   CornerRadius="0"
+                   BorderColor="#222222"
+                   BackgroundColor="#F0F0F0"
+                   HasShadow="True">
+                
+                <VerticalStackLayout x:Name="DrawerContentLayout" Spacing="15" Padding="15">
+                    </VerticalStackLayout>
+            </Frame>
+            
+            <VerticalStackLayout x:Name="HandleColumn"
+                                 WidthRequest="50"
+                                 BackgroundColor="Transparent"
+                                 Spacing="10"
+                                 Padding="0, 20">
+                
+                <Border HeightRequest="50" 
+                        WidthRequest="50"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start"
+                        BackgroundColor="{StaticResource FolderColor}">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="0, 10, 0, 10"/>
+                    </Border.StrokeShape>
+                    <Button x:Name="FolderHandle" 
+                            Text="📁" 
+                            StyleId="Folder" 
+                            Clicked="Handle_Clicked"
+                            BackgroundColor="{StaticResource FolderColor}"
+                            TextColor="White"
+                            HeightRequest="50"
+                            WidthRequest="50"
+                            VerticalOptions="Start"
+                            BorderWidth="0"/>
+                </Border>
+            
+                <Border HeightRequest="50" 
+                        WidthRequest="50"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start"
+                        BackgroundColor="{StaticResource SettingsColor}">
+
+                     <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="0, 10, 0, 10"/>
+                    </Border.StrokeShape>
+                    <Button x:Name="SettingsHandle" 
+                            Text="⚙️" 
+                            StyleId="Settings" 
+                            Clicked="Handle_Clicked"
+                            BackgroundColor="{StaticResource SettingsColor}"
+                            TextColor="White"
+                            HeightRequest="50"
+                            WidthRequest="50"
+                            VerticalOptions="Start"
+                            BorderWidth="0"/>
+                </Border>
+            
+                <Border HeightRequest="50" 
+                        WidthRequest="50"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start"
+                        BackgroundColor="{StaticResource HomeColor}">
+
+                     <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="0, 10, 0, 10"/>
+                    </Border.StrokeShape>
+                    <Button x:Name="HomeHandle" 
+                            Text="🏠" 
+                            StyleId="Home" 
+                            Clicked="Handle_Clicked"
+                            BackgroundColor="{StaticResource HomeColor}"
+                            TextColor="White"
+                            HeightRequest="50"
+                            WidthRequest="50"
+                            VerticalOptions="Start"
+                            BorderWidth="0"/>
+                </Border>
+                
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+    </Grid>
+
+
+
+
+
+
+</ContentPage>

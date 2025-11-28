@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Twitter",
+    "url": "https://twitter.com/{username}",
+    "category": "social",
+    "extract_title": true,
+    "extract_meta": true,
+    "extract_email": true,
+    "extract_links": true
+  },
+  {
+    "name": "GitHub",
+    "url": "https://github.com/{username}",
+    "category": "developer",
+    "extract_title": true,
+    "extract_meta": true,
+    "extract_email": true,
+    "extract_links": true
+  },
+  {
+    "name": "Reddit",
+    "url": "https://www.reddit.com/user/{username}",
+    "category": "forum",
+    "extract_title": true,
+    "extract_meta": true
+  },
+  {
+    "name": "Instagram",
+    "url": "https://instagram.com/{username}",
+    "category": "social",
+    "extract_title": true,
+    "extract_meta": true,
+    "extract_email": true,
+    "extract_links": true
+  },
+  {
+    "name": "TikTok",
+    "url": "https://www.tiktok.com/@{username}",
+    "category": "social",
+    "extract_title": true,
+    "extract_meta": true,
+    "extract_email": true,
+    "extract_links": true
+  },
+  {
+    "name": "Pinterest",
+    "url": "https://www.pinterest.com/{username}/",
+    "category": "social",
+    "extract_title": true,
+    "extract_meta": true,
+    "extract_email": true,
+    "extract_links": true
+  },
+  {
+    "name": "SoundCloud",
+    "url": "https://soundcloud.com/{username}",
+    "category": "music",
+    "extract_title": true,
+    "extract_meta": true,
+    "extract_email": true,
+    "extract_links": true
+  },
+  {
+    "name": "LinkedIn",
+    "url": "https://linkedin.com/in/{username}",
+    "category": "social",
+    "extract_title": true,
+    "extract_meta": true,
+    "extract_email": true,
+    "extract_links": true
+  }
+]
