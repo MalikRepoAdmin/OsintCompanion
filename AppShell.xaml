@@ -8,19 +8,19 @@
     Shell.NavBarIsVisible="False">
 
     <TabBar>
-        <Tab Title="Main Page" Icon="networkanalytic.svg">
+        <Tab Title="Main Page" Route="mainroute" Icon="networkanalytic.png">
             <ShellContent
                 ContentTemplate="{DataTemplate views:A1MainMenu}"/>
         </Tab>
-        <Tab Title="Social" Icon="networkuser.svg">
+        <Tab Title="Case" Route="caseroute"  Icon="drawerempty.png">
             <ShellContent
-                ContentTemplate="{DataTemplate views:SocialLookupPage}"/>
+                ContentTemplate="{DataTemplate views:A2CasePage}"/>
         </Tab>
-        <Tab Title="Metadata" Icon="termsinfo.svg">
+        <Tab Title="Visual" Route="visualroute" Icon="organizationchart.png">
             <ShellContent
-                ContentTemplate="{DataTemplate views:MetadataPage}"/>
+                ContentTemplate="{DataTemplate views:A3VisualPage}"/>
         </Tab>
-        <Tab Title="Notes" Icon="circlenodes.svg">
+        <Tab Title="Notes" Route="notesroute" Icon="circlenodes.png">
             <ShellContent
                 ContentTemplate="{DataTemplate views:NotesPage}"/>
         </Tab>

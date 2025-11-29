@@ -5,9 +5,9 @@
     Title="Main Page">
 
     <ContentPage.Resources>
-        <Color x:Key="FolderColor">#3877A0</Color>
-        <Color x:Key="SettingsColor">#A03877</Color>
-        <Color x:Key="HomeColor">#38A04D</Color>
+        <Color x:Key="DomainColor">#7E3285</Color>
+        <Color x:Key="SocialColor">#5D0565</Color>
+        <Color x:Key="MetadataColor">#47034E</Color>
     </ContentPage.Resources>
 
 
@@ -48,16 +48,17 @@
                         WidthRequest="50"
                         HorizontalOptions="Start"
                         VerticalOptions="Start"
-                        BackgroundColor="{StaticResource FolderColor}">
+                        BackgroundColor="{StaticResource DomainColor}">
 
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="0, 10, 0, 10"/>
                     </Border.StrokeShape>
-                    <Button x:Name="FolderHandle" 
-                            Text="📁" 
-                            StyleId="Folder" 
+                    <Button x:Name="DomainHandle" 
+                            Text="Domain" 
+                            ImageSource="globe.png"
+                            StyleId="DomainLookup" 
                             Clicked="Handle_Clicked"
-                            BackgroundColor="{StaticResource FolderColor}"
+                            BackgroundColor="{StaticResource DomainColor}"
                             TextColor="White"
                             HeightRequest="50"
                             WidthRequest="50"
@@ -69,16 +70,17 @@
                         WidthRequest="50"
                         HorizontalOptions="Start"
                         VerticalOptions="Start"
-                        BackgroundColor="{StaticResource SettingsColor}">
+                        BackgroundColor="{StaticResource SocialColor}">
 
                      <Border.StrokeShape>
                         <RoundRectangle CornerRadius="0, 10, 0, 10"/>
                     </Border.StrokeShape>
-                    <Button x:Name="SettingsHandle" 
-                            Text="⚙️" 
-                            StyleId="Settings" 
+                    <Button x:Name="SocialHandle" 
+                            Text="Social" 
+                            StyleId="SocialLookup" 
+                            ImageSource="networkuser.png"
                             Clicked="Handle_Clicked"
-                            BackgroundColor="{StaticResource SettingsColor}"
+                            BackgroundColor="{StaticResource SocialColor}"
                             TextColor="White"
                             HeightRequest="50"
                             WidthRequest="50"
@@ -90,16 +92,17 @@
                         WidthRequest="50"
                         HorizontalOptions="Start"
                         VerticalOptions="Start"
-                        BackgroundColor="{StaticResource HomeColor}">
+                        BackgroundColor="{StaticResource MetadataColor}">
 
                      <Border.StrokeShape>
                         <RoundRectangle CornerRadius="0, 10, 0, 10"/>
                     </Border.StrokeShape>
-                    <Button x:Name="HomeHandle" 
-                            Text="🏠" 
-                            StyleId="Home" 
+                    <Button x:Name="MetadataHandle" 
+                            Text="Metadata" 
+                            ImageSource="termsinfo.png"
+                            StyleId="MetadataExtractor" 
                             Clicked="Handle_Clicked"
-                            BackgroundColor="{StaticResource HomeColor}"
+                            BackgroundColor="{StaticResource MetadataColor}"
                             TextColor="White"
                             HeightRequest="50"
                             WidthRequest="50"

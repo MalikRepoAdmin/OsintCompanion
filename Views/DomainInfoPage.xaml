@@ -4,19 +4,72 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Domain/IP Lookup">
 
-    <ContentPage.Resources>
-        <Color x:Key="FolderColor">#3877A0</Color>  <Color x:Key="SettingsColor">#A03877</Color> <Color x:Key="HomeColor">#38A04D</Color>    </ContentPage.Resources>
+    <Shell.NavBarIsVisible>True</Shell.NavBarIsVisible>
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+    </Shell.BackButtonBehavior>
+
+   <ContentPage.Resources>
+        <Color x:Key="FolderColor">#7E3285</Color>
+        <Color x:Key="SettingsColor">#5D0565</Color>
+        <Color x:Key="HomeColor">#47034E</Color>
+    </ContentPage.Resources>
+
+    <!-- 2. Create a custom TitleView containing our custom back button and Title -->
+    <Shell.TitleView>
+        <HorizontalStackLayout HeightRequest="50" 
+                               Spacing="10" 
+                               Padding="10,0"
+                               BackgroundColor="Transparent" >
+            
+            <!-- Custom Back Button (Clean Styling Restored) -->
+            <ImageButton x:Name="CustomBackButton"
+                         WidthRequest="40"
+                         HeightRequest="40"
+                         Source="arrowaltsquareleft.png"
+                         BackgroundColor="#363E43" 
+                         CornerRadius="6"
+                         Padding="6"
+                         VerticalOptions="Center" 
+                         HorizontalOptions="Start"
+                         Aspect="AspectFit"
+                         Clicked="CustomBackButton_Clicked">
+                <ImageButton.Shadow>
+                    <Shadow Brush="Black" Radius="8" Opacity="0.2" Offset="1,1" />
+                </ImageButton.Shadow>
+            </ImageButton>
+
+            <!-- Page Title -->
+            <Label x:Name="PageTitleLabel" 
+                   Text="{Binding Title}" 
+                   TextColor="AntiqueWhite"
+                   FontFamily="PoppinsRegular"
+                   FontSize="14" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="End" />
+
+            <!-- Placeholder for other toolbar items if needed -->
+            
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
 
     <Grid>
 
         <VerticalStackLayout Padding="50,20,20,20" Spacing="15" Margin="20,0,0,0">
-            <Label Text="🌐 Domain / IP Lookup" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" />
+            <Label Text="🌐 Domain / IP Lookup" TextColor="FloralWhite" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" />
 
             <Entry x:Name="InputEntry"
                    Placeholder="Enter domain or IP..."
                    Keyboard="Url"
                    ClearButtonVisibility="WhileEditing" 
                    Completed="OnEnterPressed"/>
+
+
+            <!--New Entry for API Keys Input (Advanced Mode)-->
+            <Entry  x:Name="AdvancedAPI"
+                    Placeholder="Enter API Key...(Optional)"/>
 
             <Button Text="Lookup" Clicked="OnLookupClicked" Margin="0,0,0,10" />
 

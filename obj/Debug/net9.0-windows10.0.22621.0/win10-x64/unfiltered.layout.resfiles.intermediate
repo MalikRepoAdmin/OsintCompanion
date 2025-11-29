@@ -2,8 +2,10 @@ LICENSE
 NOTICE
 Assets\DevHelper\C# Cheat Sheet.md
 Assets\DevHelper\dotnet_maui_xaml_cheatsheet.md
+Assets\Icons\arrowaltsquareleft.svg
 Assets\Icons\circlenodes.svg
 Assets\Icons\circleuser.svg
+Assets\Icons\drawerempty.svg
 Assets\Icons\folderopen.svg
 Assets\Icons\globe.svg
 Assets\Icons\housechimney.svg
@@ -11,6 +13,7 @@ Assets\Icons\menuburger.svg
 Assets\Icons\networkanalytic.svg
 Assets\Icons\networkcloud.svg
 Assets\Icons\networkuser.svg
+Assets\Icons\organizationchart.svg
 Assets\Icons\settings.svg
 Assets\Icons\termsinfo.svg
 MauiMaterialAssets.ttf
@@ -64,6 +67,11 @@ appiconWideTile.scale-125.png
 appiconWideTile.scale-150.png
 appiconWideTile.scale-200.png
 appiconWideTile.scale-400.png
+arrowaltsquareleft.scale-100.png
+arrowaltsquareleft.scale-125.png
+arrowaltsquareleft.scale-150.png
+arrowaltsquareleft.scale-200.png
+arrowaltsquareleft.scale-400.png
 circlenodes.scale-100.png
 circlenodes.scale-125.png
 circlenodes.scale-150.png
@@ -79,6 +87,11 @@ dotnet_bot.scale-125.png
 dotnet_bot.scale-150.png
 dotnet_bot.scale-200.png
 dotnet_bot.scale-400.png
+drawerempty.scale-100.png
+drawerempty.scale-125.png
+drawerempty.scale-150.png
+drawerempty.scale-200.png
+drawerempty.scale-400.png
 folderopen.scale-100.png
 folderopen.scale-125.png
 folderopen.scale-150.png
@@ -114,6 +127,11 @@ networkuser.scale-125.png
 networkuser.scale-150.png
 networkuser.scale-200.png
 networkuser.scale-400.png
+organizationchart.scale-100.png
+organizationchart.scale-125.png
+organizationchart.scale-150.png
+organizationchart.scale-200.png
+organizationchart.scale-400.png
 settings.scale-100.png
 settings.scale-125.png
 settings.scale-150.png

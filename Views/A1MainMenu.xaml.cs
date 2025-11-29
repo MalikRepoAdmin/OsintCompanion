@@ -17,15 +17,15 @@ namespace OsintCompanion.Views
 
             _drawerConfigs = new Dictionary<string, (IView Content, Color Color)>
             {
-                { "Folder", (CreateMenuContent("Folder Menu", "Documents", "Archives"), (Color)Resources["FolderColor"]) },
+                { "DomainLookup", (CreateMenuContent("IP/Domain Options", "Basic", "Advanced"), (Color)Resources["FolderColor"]) },
                 { "Settings", (CreateMenuContent("Settings Menu", "Profile", "Notifications"), (Color)Resources["SettingsColor"]) },
                 { "Home", (CreateMenuContent("Home Menu", "Dashboard", "Summary"), (Color)Resources["HomeColor"]) }
             };
             
             // Set a default active tab on load
-            _activeTabId = "Folder"; 
+            _activeTabId = "DomainLookup"; 
             UpdateDrawerContentAndColor(_activeTabId);
-            UpdateHandleVisuals(FolderHandle);
+            UpdateHandleVisuals(DomainHandle);
         }
 
 
@@ -87,12 +87,12 @@ namespace OsintCompanion.Views
         // Now highlights the active bookmark instead of changing its color
         private void UpdateHandleVisuals(Button activeHandle)
         {
-            foreach (var handle in new List<Button> { FolderHandle, SettingsHandle, HomeHandle })
+            foreach (var handle in new List<Button> { DomainHandle, SocialHandle, MetadataHandle })
             {
                 if (handle == activeHandle)
                 {
                     // Highlight the active button with a border
-                    handle.BorderColor = Colors.White; 
+                    handle.BorderColor = Color.FromHex("#E0B6E4"); 
                     handle.BorderWidth = 3;
                 }
                 else
@@ -111,20 +111,7 @@ namespace OsintCompanion.Views
             return DrawerAssembly.TranslateTo(targetTranslationX, DrawerAssembly.Y, AnimationDuration, Easing.CubicOut);
         }
         
-        // **** UPDATED METHOD ****
-        // Added TextColor to look good on the dark drawer backgrounds
-        private IView CreateMenuContent(string title, string btn1, string btn2)
-        {
-            return new VerticalStackLayout
-            {
-                Spacing = 10,
-                Children = {
-                    new Label { Text = title, FontAttributes = FontAttributes.Bold, FontSize = 18, TextColor = Colors.White },
-                    new Button { Text = btn1, BackgroundColor=Colors.White, TextColor=Colors.Black },
-                    new Button { Text = btn2, BackgroundColor=Colors.White, TextColor=Colors.Black },
-                }
-            };
-        }
+        
 
         //********************************************************//
         
@@ -132,10 +119,100 @@ namespace OsintCompanion.Views
         //Code for UI Logic
         
 
+       
+
+        // MODIFIED: Attach the click handler to the menu buttons (REPLACEMENT for the original)
+        private IView CreateMenuContent(string title, string btn1, string btn2)
+        {
+            // Helper function to create a clickable button.
+            // NOTE: This assumes btn1 will always be 'Basic' and btn2 will always be 'Advanced'
+            Button CreateMenuItemButton(string text)
+            {
+                var button = new Button 
+                { 
+                    Text = text, 
+                    BackgroundColor = Colors.White, 
+                    TextColor = Colors.Black,
+                    // Use StyleId to store the target page name AND the mode, separated by |
+                    // Example: "DomainInfoPage|Basic"
+                    StyleId = $"DomainLookup|{text}" // Use a consistent target page name here
+                };
+                // Attach the new click handler
+                button.Clicked += MenuItemClicked;
+                return button;
+            }
+
+            return new VerticalStackLayout
+            {
+                Spacing = 10,
+                Children = 
+                {
+                    new Label { Text = title, FontAttributes = FontAttributes.Bold, FontSize = 18, TextColor = Colors.White },
+                    CreateMenuItemButton("Basic"), // Use static text here if you want consistency
+                    CreateMenuItemButton("Advanced"), // Use static text here
+                }
+            };
+        }
+        
+        // NEW METHOD: Handles the redirection when a menu item is clicked
+        private async void MenuItemClicked(object sender, EventArgs e)
+        {
+            var clickedButton = (Button)sender;
+            string styleId = clickedButton.StyleId; // Example: "DomainInfoPage|Basic"
+
+            // 1. Split the StyleId into TargetPageName and ModeParameter
+            string[] parts = styleId.Split('|');
+            if (parts.Length != 2)
+            {
+                await DisplayAlert("Error", "Invalid menu item configuration.", "OK");
+                return;
+            }
+
+            string targetPageName = parts[0].ToLower(); // "domaininfopage"
+            string mode = parts[1]; // "Basic" or "Advanced"
+
+            // 2. Close the drawer immediately
+            if (_isDrawerOpen)
+            {
+                _isDrawerOpen = false;
+                await AnimateDrawer(isOpening: false);
+            }
+
+            // 🚨 FINAL STACK CLEARING FIX: Use single, aggressive triple-slash (///) route 🚨
+            try
+            {
+                // Route example: ///main/domainlookup/domaininfopage?mode=Advanced
+                // This command should forcibly clear all existing navigation history.
+                string rootRoute = $"///mainroute/{_activeTabId.ToLower()}/{targetPageName}?mode={mode}";
+                
+                await Shell.Current.GoToAsync(rootRoute);
+            }
+            catch (ArgumentException ex)
+            {
+                try
+                {
+                    string rootRoute = $"///caseroute/{_activeTabId.ToLower()}/{targetPageName}?mode={mode}";
+                    
+                    await Shell.Current.GoToAsync(rootRoute);
+                }
+                catch (ArgumentException newex)
+                {
+                    string rootRoute = $"///visualroute/{_activeTabId.ToLower()}/{targetPageName}?mode={mode}";
+                
+                    await Shell.Current.GoToAsync(rootRoute);
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Navigation Error", $"Could not navigate. Error: {ex.Message}", "OK");
+            }
+        }
+
         private async void OnHelpClicked(object sender, EventArgs e)
         {
             await Help();
         }
+        
         private async Task Help()
         {
             await DisplayAlert("Help","Go To Our Repository","OK");

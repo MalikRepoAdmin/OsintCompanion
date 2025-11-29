@@ -8,7 +8,7 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = OsintCompanion
-build_property.ProjectDir = c:\Users\user\Documents\dotnet-project\OsintCompanion\
+build_property.ProjectDir = C:\Users\user\Documents\dotnet-project\OsintCompanion\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.CsWinRTAotOptimizerEnabled = true
@@ -22,61 +22,73 @@ build_property.CsWinRTUseWindowsUIXamlProjections = false
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[c:/Users/user/Documents/dotnet-project/OsintCompanion/App.xaml]
+[C:/Users/user/Documents/dotnet-project/OsintCompanion/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = OsintCompanion.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[c:/Users/user/Documents/dotnet-project/OsintCompanion/AppShell.xaml]
+[C:/Users/user/Documents/dotnet-project/OsintCompanion/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = OsintCompanion.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[c:/Users/user/Documents/dotnet-project/OsintCompanion/MainPage.xaml]
+[C:/Users/user/Documents/dotnet-project/OsintCompanion/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = OsintCompanion.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 
-[c:/Users/user/Documents/dotnet-project/OsintCompanion/Resources/Styles/Colors.xaml]
+[C:/Users/user/Documents/dotnet-project/OsintCompanion/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = OsintCompanion.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
 
-[c:/Users/user/Documents/dotnet-project/OsintCompanion/Resources/Styles/Styles.xaml]
+[C:/Users/user/Documents/dotnet-project/OsintCompanion/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = OsintCompanion.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
 
-[c:/Users/user/Documents/dotnet-project/OsintCompanion/Views/A1MainMenu.xaml]
+[C:/Users/user/Documents/dotnet-project/OsintCompanion/Views/A1MainMenu.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = OsintCompanion.Views.A1MainMenu.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\A1MainMenu.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\A1MainMenu.xaml
 
-[c:/Users/user/Documents/dotnet-project/OsintCompanion/Views/DomainInfoPage.xaml]
+[C:/Users/user/Documents/dotnet-project/OsintCompanion/Views/A2CasePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = OsintCompanion.Views.A2CasePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\A2CasePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\A2CasePage.xaml
+
+[C:/Users/user/Documents/dotnet-project/OsintCompanion/Views/A3VisualPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = OsintCompanion.Views.A3VisualPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\A3VisualPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\A3VisualPage.xaml
+
+[C:/Users/user/Documents/dotnet-project/OsintCompanion/Views/DomainInfoPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = OsintCompanion.Views.DomainInfoPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\DomainInfoPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\DomainInfoPage.xaml
 
-[c:/Users/user/Documents/dotnet-project/OsintCompanion/Views/MetadataPage.xaml]
+[C:/Users/user/Documents/dotnet-project/OsintCompanion/Views/MetadataPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = OsintCompanion.Views.MetadataPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\MetadataPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\MetadataPage.xaml
 
-[c:/Users/user/Documents/dotnet-project/OsintCompanion/Views/NotesPage.xaml]
+[C:/Users/user/Documents/dotnet-project/OsintCompanion/Views/NotesPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = OsintCompanion.Views.NotesPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\NotesPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\NotesPage.xaml
 
-[c:/Users/user/Documents/dotnet-project/OsintCompanion/Views/SocialLookupPage.xaml]
+[C:/Users/user/Documents/dotnet-project/OsintCompanion/Views/SocialLookupPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = OsintCompanion.Views.SocialLookupPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\SocialLookupPage.xaml

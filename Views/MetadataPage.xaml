@@ -5,6 +5,53 @@
              Title="Metadata Lookup">
 
 
+    <Shell.NavBarIsVisible>True</Shell.NavBarIsVisible>
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+    </Shell.BackButtonBehavior>
+
+
+    <!-- 2. Create a custom TitleView containing our custom back button and Title -->
+    <Shell.TitleView>
+        <HorizontalStackLayout HeightRequest="50" 
+                               Spacing="10" 
+                               Padding="10,0"
+                               BackgroundColor="Transparent" >
+            
+            <!-- Custom Back Button (Clean Styling Restored) -->
+            <ImageButton x:Name="CustomBackButton"
+                         WidthRequest="40"
+                         HeightRequest="40"
+                         Source="arrowaltsquareleft.png"
+                         BackgroundColor="#363E43" 
+                         CornerRadius="6"
+                         Padding="6"
+                         VerticalOptions="Center" 
+                         HorizontalOptions="Start"
+                         Aspect="AspectFit"
+                         Clicked="CustomBackButton_Clicked">
+                <ImageButton.Shadow>
+                    <Shadow Brush="Black" Radius="8" Opacity="0.2" Offset="1,1" />
+                </ImageButton.Shadow>
+            </ImageButton>
+
+            <!-- Page Title -->
+            <Label x:Name="PageTitleLabel" 
+                   Text="{Binding Title}" 
+                   TextColor="AntiqueWhite"
+                   FontFamily="PoppinsRegular"
+                   FontSize="14" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="End" />
+
+            <!-- Placeholder for other toolbar items if needed -->
+            
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+
+
     <Grid Padding="16" RowDefinitions="Auto,Auto,Auto,*,Auto" RowSpacing="10">
 
         <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="8">
@@ -15,6 +62,10 @@
                 FontSize="14"
                 Keyboard="Url"
                 Completed="OnEntryCompleted"/>
+
+            <!--New Entry for API Keys Input (Advanced Mode)-->
+            <Entry  x:Name="AdvancedAPI"
+                    Placeholder="Enter API Key...(Optional)"/>
 
             <Button Text="Extract Metadata"
                     Clicked="OnExtractClicked"

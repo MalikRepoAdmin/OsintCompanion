@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OsintCompanion")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+9b7c9461dc472402c701bae921dd863e9ee00ce7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+72a5a05d6b13279a6f865d53474f8193f7587ab0")]
 [assembly: System.Reflection.AssemblyProductAttribute("OsintCompanion")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OsintCompanion")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

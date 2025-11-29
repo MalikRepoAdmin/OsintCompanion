@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WpamY8J/XA8=",
+  "dgSpecHash": "uhYjED2apY0=",
   "success": true,
-  "projectFilePath": "c:\\Users\\user\\Documents\\dotnet-project\\OsintCompanion\\OsintCompanion.csproj",
+  "projectFilePath": "C:\\Users\\user\\Documents\\dotnet-project\\OsintCompanion\\OsintCompanion.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\arsoft.tools.net\\3.6.1\\arsoft.tools.net.3.6.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\bouncycastle.cryptography\\2.4.0\\bouncycastle.cryptography.2.4.0.nupkg.sha512",

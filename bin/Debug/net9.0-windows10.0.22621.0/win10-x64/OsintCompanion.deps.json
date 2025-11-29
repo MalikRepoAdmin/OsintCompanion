@@ -20,6 +20,7 @@
           "Mime-Detective": "25.8.1",
           "Serilog": "4.3.0",
           "Syncfusion.Maui.Buttons": "31.2.10",
+          "Syncfusion.Maui.Toolkit": "1.0.8",
           "Microsoft.Web.WebView2.Core.Projection": "1.0.3179.45",
           "runtimepack.Microsoft.Windows.SDK.NET.Ref": "10.0.22621.57"
         },
@@ -849,6 +850,19 @@
           }
         }
       },
+      "Syncfusion.Maui.Toolkit/1.0.8": {
+        "runtime": {
+          "lib/net9.0-windows10.0.19041.0/Syncfusion.Maui.Toolkit.dll": {
+            "assemblyVersion": "1.0.8.0",
+            "fileVersion": "1.0.8.0"
+          }
+        },
+        "resources": {
+          "lib/net9.0-windows10.0.19041.0/en-US/Syncfusion.Maui.Toolkit.resources.dll": {
+            "locale": "en-US"
+          }
+        }
+      },
       "System.Buffers/4.3.0": {
         "dependencies": {
           "System.Diagnostics.Debug": "4.3.0",
@@ -1634,6 +1648,13 @@
       "sha512": "sha512-C9Cj8wAYwo/5vsxHWe/FamR/4j2L+1sMZqWOoNyhQ5I3lqElc2337XbmJ0J3uPWwy6WrF8YAlGo2ZZf4XCuxXQ==",
       "path": "syncfusion.maui.core/31.2.10",
       "hashPath": "syncfusion.maui.core.31.2.10.nupkg.sha512"
+    },
+    "Syncfusion.Maui.Toolkit/1.0.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YJOKFG25bQNyBV4M/fwxriusodbyKY+oWcOJWIL+fj0RIVLb7Q73zarR2HZ+OOlirTqXeSscgCu1AzjZnyQy/A==",
+      "path": "syncfusion.maui.toolkit/1.0.8",
+      "hashPath": "syncfusion.maui.toolkit.1.0.8.nupkg.sha512"
     },
     "System.Buffers/4.3.0": {
       "type": "package",

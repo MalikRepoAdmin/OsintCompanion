@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\user\\Documents\\dotnet-project\\OsintCompanion\\OsintCompanion.csproj": {}
+    "C:\\Users\\user\\Documents\\dotnet-project\\OsintCompanion\\OsintCompanion.csproj": {}
   },
   "projects": {
-    "c:\\Users\\user\\Documents\\dotnet-project\\OsintCompanion\\OsintCompanion.csproj": {
+    "C:\\Users\\user\\Documents\\dotnet-project\\OsintCompanion\\OsintCompanion.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\user\\Documents\\dotnet-project\\OsintCompanion\\OsintCompanion.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Documents\\dotnet-project\\OsintCompanion\\OsintCompanion.csproj",
         "projectName": "OsintCompanion",
-        "projectPath": "c:\\Users\\user\\Documents\\dotnet-project\\OsintCompanion\\OsintCompanion.csproj",
+        "projectPath": "C:\\Users\\user\\Documents\\dotnet-project\\OsintCompanion\\OsintCompanion.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\user\\Documents\\dotnet-project\\OsintCompanion\\obj\\",
+        "outputPath": "C:\\Users\\user\\Documents\\dotnet-project\\OsintCompanion\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
