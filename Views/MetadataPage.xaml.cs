@@ -10,7 +10,7 @@ namespace OsintCompanion.Views
     /// <summary>
     /// Handles UI logic(View) and ViewModel for metadata extractor page.
     /// </summary>
-    public partial class MetadataPage : ContentPage
+    public partial class MetadataPage : ContentPage, IQueryAttributable
     {
         private readonly MetadataService _metadataService;
 
@@ -64,7 +64,7 @@ namespace OsintCompanion.Views
 
                 // 🚨 Make all Advanced elements visible 🚨
                 // Register all the x:Name that is an Advanced Content
-                AdvancedAPI.IsVisible = true;
+                AdvancedAPIMetadata.IsVisible = true;
                 // ... (Add any other Advanced-only controls here)
             }
             else // Handles "Basic" mode, or if the parameter is missing/wrong.
@@ -72,7 +72,7 @@ namespace OsintCompanion.Views
                 Title = "Social Lookup (Basic Mode)";
 
                 // 🚨 Ensure all Advanced elements are hidden 🚨
-                AdvancedAPI.IsVisible = false;
+                AdvancedAPIMetadata.IsVisible = false;
                 // ... (Add any other Advanced-only controls here)
             }
         }

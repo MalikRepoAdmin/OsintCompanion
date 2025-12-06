@@ -3,6 +3,9 @@ using System.Net;
 using Microsoft.Maui.Controls;
 using System.Text.RegularExpressions;
 using Microsoft.Maui.Graphics;
+using OsintCompanion.Models;
+using System.ComponentModel;
+
 
 namespace OsintCompanion.Views
 {
@@ -15,12 +18,31 @@ namespace OsintCompanion.Views
         private string _activeTabId = string.Empty;
         private readonly Dictionary<string, (IView Content, Color Color)> _drawerConfigs;
 
-        // This is the CONSTRUCTOR
-        public DomainInfoPage()
+        // This is variable to hold B1DomainInfoVM
+        private readonly B1DomainInfoVM _viewModel; // Hold the ViewModel
+
+        // This is the CONSTRUCTOR : Also Inject B1DomainInfoVM as ViewModel
+        public DomainInfoPage(B1DomainInfoVM viewModel)
         {
             InitializeComponent();
 
-            //Add This line for every page that is child to Drawer
+            // any Dependency Injection and Subscribe to Action from B1DomainInfoVM must be placed here
+
+            // Inject the B1DomainInfoVM and set as flag _viewModel
+            _viewModel = viewModel;
+            this.BindingContext = _viewModel; // Set the ViewModel as the BindingContext
+
+            // Subscribe to property changes in the ViewModel
+            _viewModel.PropertyChanged += ViewModel_PropertyChanged;
+
+            // Subscribe the View's DisplayAlert method to the ViewModel's Action 
+            _viewModel.DisplayAlertAction = async (title, message, cancel) =>
+            {
+                await DisplayAlert(title, message, cancel);
+            };
+
+
+            // Add This line for every page that is child to Drawer
             PageTitleLabel.BindingContext = this;
 
 
@@ -111,6 +133,7 @@ namespace OsintCompanion.Views
             try
             {
                 // This must now be a single click because the stack has been reset.
+                
                 await Shell.Current.GoToAsync(".."); 
             }
             catch (Exception ex)
@@ -217,128 +240,35 @@ namespace OsintCompanion.Views
 
 
         //////////////////////////////////////////////////////////////////////////
+        // Below is the actual code to bind with ViewModel
+
+
+        // New handler to watch for when the LookupResult changes
+        private void ViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(B1DomainInfoVM.LookupResult))
+            {
+                // This is purely UI manipulation, so it's acceptable in the code-behind
+                ShowResult(_viewModel.LookupResult);
+
+                // Also, handle the IsBusy state here to manually control the LoadingIndicator visibility 
+                // if you didn't use XAML binding for it (though XAML binding is cleaner).
+                if (e.PropertyName == nameof(B1DomainInfoVM.IsBusy))
+                {
+                    LoadingIndicator.IsRunning = _viewModel.IsBusy;
+                    LoadingIndicator.IsVisible = _viewModel.IsBusy;
+                }
+            }
+        }
         
-
-        private readonly HttpClient _httpClient = new();
-        private readonly Dictionary<string, IpApiResponse> _cache = new(); // local cache
-
-        // Logic For Button "LookUp" and Enter Key Pressed
-        private async void OnLookupClicked(object sender, EventArgs e)
+        // This method is moved from the old backend section, now triggered by ViewModel_PropertyChanged
+        private void ShowResult(IpApiResponse? data)
         {
-            await StartLookup(); // ✅ handler must be async void
-        }
-
-        private async void OnEnterPressed(object sender, EventArgs e)
-        {
-            await StartLookup(); // ✅ same here
-        }
-
-        // Action executed when LookUp Button clicked or Enter Key Pressed
-        private async Task StartLookup()
-        {
-            string query = InputEntry.Text?.Trim().ToLower() ?? string.Empty;
-            if (string.IsNullOrWhiteSpace(query))
-            {
-                await DisplayAlert("Input Required", "Please enter a domain or IP address.", "OK");
-                return;
-            }
-
-            LoadingIndicator.IsVisible = LoadingIndicator.IsRunning = true;
+            // Clear the container first
             ResultContainer.Children.Clear();
+            
+            if (data == null) return; // Nothing to show
 
-            try
-            {
-                if (_cache.ContainsKey(query))
-                {
-                    ShowResult(_cache[query]);
-                    return;
-                }
-
-                IpApiResponse? result = null;
-
-                // Detect if input is IP
-                bool isIp = IPAddress.TryParse(query, out _);
-
-                if (isIp)
-                    result = await QueryIpFallbackAsync(query);
-                else
-                {
-                    // resolve domain -> IP first
-                    try
-                    {
-                        var addresses = await Dns.GetHostAddressesAsync(query);
-                        if (addresses.Length > 0)
-                            result = await QueryIpFallbackAsync(addresses[0].ToString());
-                        else
-                            Console.WriteLine("No addresses resolved.");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"DNS resolution failed: {ex.Message}");
-                        // Try querying directly with the domain name
-                        result = await QueryIpFallbackAsync(query);
-                    }
-
-                }
-
-                if (result != null)
-                {
-                    _cache[query] = result; // store in cache
-                    ShowResult(result);
-                }
-                else
-                    await DisplayAlert("Error", "No data found or API limit reached.", "OK");
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Lookup Failed", ex.Message, "OK");
-            }
-            finally
-            {
-                LoadingIndicator.IsVisible = LoadingIndicator.IsRunning = false;
-            }
-        }
-
-        // Tries ipapi.co first, then ip-api.com
-        private async Task<IpApiResponse?> QueryIpFallbackAsync(string query)
-        {
-            try
-            {
-                string url = $"https://ipapi.co/{query}/json/";
-                var result = await _httpClient.GetFromJsonAsync<IpApiResponse>(url);
-                if (result != null && result.ip != null) return result;
-                var json = await _httpClient.GetStringAsync(url);
-                await DisplayAlert("DEBUG", json.Substring(0, Math.Min(json.Length, 500)), "OK");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"ipapi.co error: {ex.Message}");
-            }
-
-            try
-            {
-                string url = $"https://ip-api.com/json/{query}";
-                var alt = await _httpClient.GetFromJsonAsync<IpApiResponse>(url);
-                if (alt != null && alt.query != null)
-                {
-                    // Normalize property names for consistent UI
-                    alt.ip = alt.query;
-                    alt.country_name ??= alt.country;
-                    alt.org ??= alt.isp;
-                    return alt;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"ip-api.com error: {ex.Message}");
-            }
-
-
-            return null;
-        }
-
-        private void ShowResult(IpApiResponse data)
-        {
             void AddLine(string label, string? value)
             {
                 if (string.IsNullOrWhiteSpace(value)) return;
@@ -353,31 +283,16 @@ namespace OsintCompanion.Views
                 });
             }
 
-            AddLine("IP", data.ip);
-            AddLine("City", data.city);
-            AddLine("Region", data.region);
-            AddLine("Country", data.country_name);
-            AddLine("ISP / Org", data.org);
-            AddLine("ASN", data.asn);
-            AddLine("Latitude", data.latitude?.ToString());
-            AddLine("Longitude", data.longitude?.ToString());
-            AddLine("Timezone", data.timezone);
+            // Map the data model to the UI labels
+            AddLine("IP", data.Ip);
+            AddLine("City", data.City);
+            AddLine("Region", data.Region);
+            AddLine("Country", data.CountryName);
+            AddLine("ISP / Org", data.Org);
+            AddLine("ASN", data.Asn);
+            AddLine("Latitude", data.Latitude?.ToString());
+            AddLine("Longitude", data.Longitude?.ToString());
+            AddLine("Timezone", data.Timezone);
         }
-    }
-
-    public class IpApiResponse
-    {
-        public string? ip { get; set; }
-        public string? query { get; set; }
-        public string? city { get; set; }
-        public string? region { get; set; }
-        public string? country_name { get; set; }
-        public string? country { get; set; }
-        public string? org { get; set; }
-        public string? isp { get; set; }
-        public string? asn { get; set; }
-        public double? latitude { get; set; }
-        public double? longitude { get; set; }
-        public string? timezone { get; set; }
     }
 }

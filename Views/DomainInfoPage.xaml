@@ -2,12 +2,15 @@
     x:Class="OsintCompanion.Views.DomainInfoPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Domain/IP Lookup">
+    Title="{Binding Title}"
+    xmlns:vm="clr-namespace:OsintCompanion.Views"
+    xmlns:models="clr-namespace:OsintCompanion.Models"
+    x:DataType="vm:B1DomainInfoVM" >
 
-    <Shell.NavBarIsVisible>True</Shell.NavBarIsVisible>
+    <Shell.NavBarIsVisible>False</Shell.NavBarIsVisible>
 
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+        <BackButtonBehavior IsVisible="True" IsEnabled="True" />
     </Shell.BackButtonBehavior>
 
    <ContentPage.Resources>
@@ -64,25 +67,23 @@
                    Placeholder="Enter domain or IP..."
                    Keyboard="Url"
                    ClearButtonVisibility="WhileEditing" 
-                   Completed="OnEnterPressed"/>
-
-
-            <!--New Entry for API Keys Input (Advanced Mode)-->
-            <Entry  x:Name="AdvancedAPI"
-                    Placeholder="Enter API Key...(Optional)"/>
-
-            <Button Text="Lookup" Clicked="OnLookupClicked" Margin="0,0,0,10" />
-
-            <ActivityIndicator x:Name="LoadingIndicator"
-                               IsVisible="False"
-                               IsRunning="False"
-                               Color="#0078D4" 
+                   Text="{Binding InputQuery}"             
+                   ReturnCommand="{Binding LookupCommand}"/> 
+            
+            <Entry x:Name="AdvancedAPI"
+                   Placeholder="Enter API Key...(Optional)"
+                   IsVisible="{Binding IsAdvancedMode}" />  <Button Text="Lookup" 
+                    Command="{Binding LookupCommand}"       Margin="0,0,0,10" />                   <ActivityIndicator x:Name="LoadingIndicator"
+                               IsVisible="{Binding IsBusy}"  IsRunning="{Binding IsBusy}"  Color="#0078D4" 
                                Margin="0,0,0,10"/>
 
             <Label Text="Result Will Shown Here:" HorizontalOptions="Start" FontSize="16" TextColor="#F7F7F7"/>
             <ScrollView>
                 <Frame BorderColor="#DDD" BackgroundColor="White" CornerRadius="12" Padding="10">
+                    <VerticalStackLayout>
+                    <ContentView Content="{Binding LookupResult, Converter={StaticResource ResultToViewConverter}}"/>
                     <VerticalStackLayout x:Name="ResultContainer" Spacing="6" />
+                    </VerticalStackLayout>
                 </Frame>
             </ScrollView>
         </VerticalStackLayout>

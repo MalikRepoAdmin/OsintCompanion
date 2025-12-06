@@ -7,7 +7,7 @@ using OsintCompanion.Models;
 
 namespace OsintCompanion.Views
 {
-    public partial class SocialLookupPage : ContentPage
+    public partial class SocialLookupPage : ContentPage, IQueryAttributable
     {
         // Single service instance for the page (stateless HttpClient inside service)
         private readonly SocialSearchService _socialSearchService = new();
@@ -61,7 +61,7 @@ namespace OsintCompanion.Views
 
                 // 🚨 Make all Advanced elements visible 🚨
                 // Register all the x:Name that is an Advanced Content
-                AdvancedAPI.IsVisible = true;
+                AdvancedAPISocial.IsVisible = true;
                 // ... (Add any other Advanced-only controls here)
             }
             else // Handles "Basic" mode, or if the parameter is missing/wrong.
@@ -69,7 +69,7 @@ namespace OsintCompanion.Views
                 Title = "Social Lookup (Basic Mode)";
 
                 // 🚨 Ensure all Advanced elements are hidden 🚨
-                AdvancedAPI.IsVisible = false;
+                AdvancedAPISocial.IsVisible = false;
                 // ... (Add any other Advanced-only controls here)
             }
         }

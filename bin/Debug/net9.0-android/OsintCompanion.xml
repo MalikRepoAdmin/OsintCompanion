@@ -1,0 +1,313 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OsintCompanion</name>
+    </assembly>
+    <members>
+        <member name="T:OsintCompanion.Models.MetadataResult">
+            <summary>
+            Represents metadata extracted from a webpage or file.
+            </summary>
+        </member>
+        <member name="P:OsintCompanion.Models.MetadataResult.Source">
+            <summary> The source URL or file path. </summary>
+        </member>
+        <member name="P:OsintCompanion.Models.MetadataResult.ContentType">
+            <summary> Detected content type (HTML, Image, Document, etc.). </summary>
+        </member>
+        <member name="P:OsintCompanion.Models.MetadataResult.Title">
+            <summary> Page or file title. </summary>
+        </member>
+        <member name="P:OsintCompanion.Models.MetadataResult.Description">
+            <summary> Meta description or summary. </summary>
+        </member>
+        <member name="P:OsintCompanion.Models.MetadataResult.Keywords">
+            <summary> Meta keywords if found. </summary>
+        </member>
+        <member name="P:OsintCompanion.Models.MetadataResult.Author">
+            <summary> Author name (meta or EXIF). </summary>
+        </member>
+        <member name="P:OsintCompanion.Models.MetadataResult.CreatedDate">
+            <summary> Creation date if available. </summary>
+        </member>
+        <member name="P:OsintCompanion.Models.MetadataResult.ModifiedDate">
+            <summary> Last modified date. </summary>
+        </member>
+        <member name="P:OsintCompanion.Models.MetadataResult.ExifData">
+            <summary> For image files: EXIF info. </summary>
+        </member>
+        <member name="P:OsintCompanion.Models.MetadataResult.Extra">
+            <summary> Any extra discovered metadata fields. </summary>
+        </member>
+        <member name="P:OsintCompanion.Models.MetadataResult.HasData">
+            <summary> Returns true if any metadata was extracted. </summary>
+        </member>
+        <member name="T:OsintCompanion.Models.SiteDefinition">
+            <summary>
+            Represents a website or platform to check for a given username.
+            </summary>
+        </member>
+        <member name="T:OsintCompanion.Models.SocialResult">
+            <summary>
+            Represents the search result of a username check on a given platform.
+            </summary>
+        </member>
+        <member name="T:OsintCompanion.Services.MetadataService">
+            <summary>
+            Handles extraction of metadata from both URLs and local files.
+            Supports HTML meta tags and image EXIF (cross-platform using MetadataExtractor).
+            </summary>
+        </member>
+        <member name="M:OsintCompanion.Services.MetadataService.ExtractAsync(System.String)">
+            <summary>
+            Automatically detects input type (URL or file) and extracts metadata.
+            </summary>
+        </member>
+        <member name="M:OsintCompanion.Services.MetadataService.ExtractFromUrlAsync(System.String)">
+            <summary>
+            Extract metadata from a webpage via HTTP.
+            </summary>
+        </member>
+        <member name="M:OsintCompanion.Services.MetadataService.ExtractFromFileAsync(System.String)">
+            <summary>
+            Extract metadata from local files (images, HTML/XML, etc.).
+            </summary>
+        </member>
+        <member name="M:OsintCompanion.Services.MetadataService.DetectFileTypeMime(System.String)">
+            <summary>
+                    This is a Portable Method to Detect Data type With MIME-Detective
+                    as the Inspector of Extended Data Type/Extensions
+            </summary>
+            <returns>
+                    This will returns "DataTypeResult" variable 
+            </returns>
+        </member>
+        <member name="T:OsintCompanion.Services.SocialSearchService">
+            <summary>
+            Service to search a username across multiple social sites.
+            Supports optional metadata extraction (title, emails, links).
+            </summary>
+        </member>
+        <member name="T:OsintCompanion.Services.SocialSearchService.SiteDefinition">
+            <summary>
+            Represents a social site to search.
+            </summary>
+        </member>
+        <member name="M:OsintCompanion.Services.SocialSearchService.SiteDefinition.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Represents a social site to search.
+            </summary>
+        </member>
+        <member name="M:OsintCompanion.Services.SocialSearchService.SearchUsernameAsync(System.String,System.Action{System.String})">
+            <summary>
+            Searches the given username across all configured sites.
+            </summary>
+            <param name="username">The username to search.</param>
+            <param name="log">Optional logger callback.</param>
+            <returns>List of SocialResult with existence and metadata info.</returns>
+        </member>
+        <member name="M:OsintCompanion.Services.SocialSearchService.ExtractInfo(System.String,OsintCompanion.Services.SocialSearchService.SiteDefinition)">
+            <summary>
+            Extracts optional metadata from the HTML response (title, emails, links).
+            </summary>
+        </member>
+        <member name="M:OsintCompanion.Views.DomainInfoPage.ApplyQueryAttributes(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            This method is called automatically when the page is navigated to.
+            From the Main Page drawer item
+            </summary>
+            <param name="query"></param>
+        </member>
+        <member name="M:OsintCompanion.Views.DomainInfoPage.SetAdvancedVisibility(System.Boolean)">
+            <summary>
+            This Method is for Showing "Advanced Content" Logic 
+            And All x:Name that is advanced content being registered here
+            </summary>
+        </member>
+        <member name="M:OsintCompanion.Views.DomainInfoPage.CustomBackButton_Clicked(System.Object,System.EventArgs)">
+            <summary>
+            Handles the click event for the custom back button.
+            This relies on the clean stack created by the aggressive navigation in A1MainMenu.
+            </summary>
+        </member>
+        <member name="T:OsintCompanion.Views.MetadataPage">
+            <summary>
+            Handles UI logic(View) and ViewModel for metadata extractor page.
+            </summary>
+        </member>
+        <member name="M:OsintCompanion.Views.MetadataPage.ApplyQueryAttributes(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            This method is called automatically when the page is navigated to.
+            From the Main Page drawer item
+            </summary>
+            <param name="query"></param>
+        </member>
+        <member name="M:OsintCompanion.Views.MetadataPage.SetAdvancedVisibility(System.Boolean)">
+            <summary>
+            This Method is for Showing "Advanced Content" Logic 
+            And All x:Name that is advanced content being registered here
+            </summary>
+        </member>
+        <member name="M:OsintCompanion.Views.MetadataPage.CustomBackButton_Clicked(System.Object,System.EventArgs)">
+            <summary>
+            Handles the click event for the custom back button.
+            This relies on the clean stack created by the aggressive navigation in A1MainMenu.
+            </summary>
+        </member>
+        <member name="M:OsintCompanion.Views.MetadataPage.OnEntryCompleted(System.Object,System.EventArgs)">
+            <summary>
+            Event handler when user clicks "Extract Metadata" button.
+            </summary>
+        </member>
+        <member name="M:OsintCompanion.Views.MetadataPage.FormatResult(OsintCompanion.Models.MetadataResult)">
+            <summary>
+            Builds a formatted string from the metadata result.
+            </summary>
+        </member>
+        <member name="M:OsintCompanion.Views.SocialLookupPage.ApplyQueryAttributes(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            This method is called automatically when the page is navigated to.
+            From the Main Page drawer item
+            </summary>
+            <param name="query"></param>
+        </member>
+        <member name="M:OsintCompanion.Views.SocialLookupPage.SetAdvancedVisibility(System.Boolean)">
+            <summary>
+            This Method is for Showing "Advanced Content" Logic 
+            And All x:Name that is advanced content being registered here
+            </summary>
+        </member>
+        <member name="M:OsintCompanion.Views.SocialLookupPage.CustomBackButton_Clicked(System.Object,System.EventArgs)">
+            <summary>
+            Handles the click event for the custom back button.
+            This relies on the clean stack created by the aggressive navigation in A1MainMenu.
+            </summary>
+        </member>
+        <member name="T:OsintCompanion.Resource">
+            <summary>
+            Android Resource Designer class.
+            Exposes the Android Resource designer assembly into the project Namespace.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Button.TextColorTo(Microsoft.Maui.Controls.Button,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_DatePicker.TextColorTo(Microsoft.Maui.Controls.DatePicker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Editor.TextColorTo(Microsoft.Maui.Controls.Editor,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Entry.TextColorTo(Microsoft.Maui.Controls.Entry,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_InputView.TextColorTo(Microsoft.Maui.Controls.InputView,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Label.TextColorTo(Microsoft.Maui.Controls.Label,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Picker.TextColorTo(Microsoft.Maui.Controls.Picker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_RadioButton.TextColorTo(Microsoft.Maui.Controls.RadioButton,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_SearchBar.TextColorTo(Microsoft.Maui.Controls.SearchBar,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_TimePicker.TextColorTo(Microsoft.Maui.Controls.TimePicker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+    </members>
+</doc>

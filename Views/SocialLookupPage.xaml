@@ -9,7 +9,7 @@
     <Shell.NavBarIsVisible>True</Shell.NavBarIsVisible>
 
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+        <BackButtonBehavior IsVisible="True" IsEnabled="True" />
     </Shell.BackButtonBehavior>
 
 
@@ -70,7 +70,7 @@
                    Completed="OnEntryCompleted" />
 
             <!--New Entry for API Keys Input (Advanced Mode)-->
-            <Entry  x:Name="AdvancedAPI"
+            <Entry  x:Name="AdvancedAPISocial"
                     Placeholder="Enter API Key...(Optional)"/>
             
             <Button Text="Search"

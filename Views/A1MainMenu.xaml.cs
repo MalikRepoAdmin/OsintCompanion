@@ -17,9 +17,9 @@ namespace OsintCompanion.Views
 
             _drawerConfigs = new Dictionary<string, (IView Content, Color Color)>
             {
-                { "DomainLookup", (CreateMenuContent("IP/Domain Options", "Basic", "Advanced"), (Color)Resources["FolderColor"]) },
-                { "Settings", (CreateMenuContent("Settings Menu", "Profile", "Notifications"), (Color)Resources["SettingsColor"]) },
-                { "Home", (CreateMenuContent("Home Menu", "Dashboard", "Summary"), (Color)Resources["HomeColor"]) }
+                { "DomainLookup", (CreateMenuContent("IP/Domain Options", "Basic", "Advanced"), (Color)Resources["DomainColor"]) },
+                { "SocialLookup", (CreateMenuContent("Social Options", "Basic", "Advanced"), (Color)Resources["SocialColor"]) },
+                { "MetadataExtractor", (CreateMenuContent("Metadata Options", "Basic", "Advanced"), (Color)Resources["MetadataColor"]) }
             };
             
             // Set a default active tab on load
@@ -135,7 +135,7 @@ namespace OsintCompanion.Views
                     TextColor = Colors.Black,
                     // Use StyleId to store the target page name AND the mode, separated by |
                     // Example: "DomainInfoPage|Basic"
-                    StyleId = $"DomainLookup|{text}" // Use a consistent target page name here
+                    StyleId = $"{_activeTabId}|{text}" // Use a consistent target page name here
                 };
                 // Attach the new click handler
                 button.Clicked += MenuItemClicked;
@@ -183,24 +183,13 @@ namespace OsintCompanion.Views
             {
                 // Route example: ///main/domainlookup/domaininfopage?mode=Advanced
                 // This command should forcibly clear all existing navigation history.
-                string rootRoute = $"///mainroute/{_activeTabId.ToLower()}/{targetPageName}?mode={mode}";
+                string rootRoute = $"//mainroute/{_activeTabId.ToLower()}/{targetPageName}?mode={mode}";
                 
                 await Shell.Current.GoToAsync(rootRoute);
-            }
-            catch (ArgumentException ex)
-            {
-                try
-                {
-                    string rootRoute = $"///caseroute/{_activeTabId.ToLower()}/{targetPageName}?mode={mode}";
-                    
-                    await Shell.Current.GoToAsync(rootRoute);
-                }
-                catch (ArgumentException newex)
-                {
-                    string rootRoute = $"///visualroute/{_activeTabId.ToLower()}/{targetPageName}?mode={mode}";
-                
-                    await Shell.Current.GoToAsync(rootRoute);
-                }
+
+
+                // Temporary Debug Code
+                await DisplayAlert("Debug DomainLookup",$"//mainroute/{_activeTabId.ToLower()}/{targetPageName}?mode={mode}","OK");
             }
             catch (Exception ex)
             {
